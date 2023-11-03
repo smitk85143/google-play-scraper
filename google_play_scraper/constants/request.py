@@ -104,8 +104,65 @@ class Formats:
 
         def build_body(self, *args):
             return None
+        
+    class _DataSafety(Format):
+        URL_FORMAT = "{}/store/apps/datasafety?id={{app_id}}&hl={{lang}}&gl={{country}}".format(
+            PLAY_STORE_BASE_URL
+        )
+        FALLBACK_URL_FORMAT = "{}/store/apps/datasafety?id={{app_id}}&hl={{lang}}".format(
+            PLAY_STORE_BASE_URL
+        )
+
+        def build(self, app_id: str, lang: str, country: str) -> str:
+            return self.URL_FORMAT.format(app_id=app_id, lang=lang, country=country)
+
+        def fallback_build(self, app_id: str, lang: str) -> str:
+            return self.FALLBACK_URL_FORMAT.format(app_id=app_id, lang=lang)
+
+        def build_body(self, *args):
+            return None
+
+
+    class _Collection(Format):
+        URL_FORMAT = "{}/store/apps/collection/cluster?gsr={{collection_token}}&hl={{lang}}&gl={{country}}".format(
+            PLAY_STORE_BASE_URL
+        )
+        FALLBACK_URL_FORMAT = "{}/store/apps/collection/cluster?gsr={{collection_token}}&hl={{lang}}".format(
+            PLAY_STORE_BASE_URL
+        )
+
+        def build(self, collection_token: str, lang: str, country: str) -> str:
+            return self.URL_FORMAT.format(collection_token=collection_token, lang=lang, country=country)
+
+        def fallback_build(self, collection_token: str, lang: str) -> str:
+            return self.FALLBACK_URL_FORMAT.format(
+                collection_token=collection_token, lang=lang
+            )
+
+        def build_body(self, *args):
+            return None
+        
+    class _Developer(Format):
+        URL_FORMAT = "{}/store/apps/dev?id={{developer_id}}&hl={{lang}}&gl={{country}}".format(
+            PLAY_STORE_BASE_URL
+        )
+        FALLBACK_URL_FORMAT = "{}/store/apps/dev?id={{developer_id}}&hl={{lang}}".format(
+            PLAY_STORE_BASE_URL
+        )
+
+        def build(self, developer_id: str, lang: str, country: str) -> str:
+            return self.URL_FORMAT.format(developer_id=developer_id, lang=lang, country=country)
+
+        def fallback_build(self, developer_id: str, lang: str) -> str:
+            return self.FALLBACK_URL_FORMAT.format(developer_id=developer_id, lang=lang)
+
+        def build_body(self, *args):
+            return None
 
     Detail = _Detail()
     Reviews = _Reviews()
     Permissions = _Permissions()
     Searchresults = _Searchresults()
+    Developer = _Developer()
+    DataSafety = _DataSafety()
+    Collection = _Collection()

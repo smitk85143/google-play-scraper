@@ -9,7 +9,6 @@ from google_play_scraper.exceptions import NotFoundError
 
 
 def developer(developer_token: str, lang: str = "en", country: str = "us") -> Dict[str, Any]:
-    print("developer")
     url = Formats.Developer.build(developer_token, lang=lang, country=country)
 
     try:

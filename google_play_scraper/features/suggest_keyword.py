@@ -1,6 +1,6 @@
 import json
 import requests
-from google_play_scraper.constants.google_play import PLAY_STORE_BASE_URL
+from google_play_scraper.constants.request import PLAY_STORE_BASE_URL
 
 def suggest_keyword(keyword, **opts):
     if not keyword:

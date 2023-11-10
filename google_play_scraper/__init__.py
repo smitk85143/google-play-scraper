@@ -8,6 +8,7 @@ from .features.collection import collection # noqa: F401
 from .features.developer import developer # noqa: F401
 from .features.leaderboard import leaderboard # noqa: F401
 from .features.list import list # noqa: F401
+from .features.suggest_keyword import suggest_keyword # noqa: F401
 
 #aso
 from .features.aso.position_keyword_app import position_keyword_app # noqa: F401

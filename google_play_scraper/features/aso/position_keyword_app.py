@@ -25,7 +25,7 @@ def position_keyword_app(app_id: str, lang: str = "en", country: str = "us", key
         data = app(app_id, lang, country)
         full_content = [ f"{data['title']} {data['summary']} {data['description']} {data['comments'][0]}{data['comments'][1]}{data['comments'][2]} {data['developer']}" ]
 
-        similar_apps = collection(data['similarAppsPage']['token'], lang, country)['apps']
+        # similar_apps = collection(data['similarAppsPage']['token'], lang, country)['apps']
 
         # for i, similar_app in enumerate(similar_apps):
         #     if i < 3:

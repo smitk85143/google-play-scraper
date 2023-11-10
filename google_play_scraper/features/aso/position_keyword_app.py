@@ -13,8 +13,8 @@ def position_validator(keywords, app_id, lang, country):
     relevant_keys = []
     for i, key in enumerate(keywords):
         search_result = [ x['appId'] for x in search(key[0], n_hits=50, lang=lang, country=country) ]
-        for j, search_app in enumerate(search_result):
-            position = i - 5
+        for search_app in search_result:
+            position = i + 1
             if search_app == app_id:
                 relevant_keys.append([key[0], key[1], position])
     return relevant_keys
@@ -43,5 +43,10 @@ def position_keyword_app(app_id: str, lang: str = "en", country: str = "us", key
         keywords = [(keyword, None) for keyword in keywords]
 
     position_keywords = position_validator(keywords, app_id, lang, country)
+
+    data = []
+    for item in position_keywords:
+        data.append({'Key': item[0], "Search position": item[2]})
+    data = sorted(data, key=lambda k: k['Search position'])
 
     return position_keywords

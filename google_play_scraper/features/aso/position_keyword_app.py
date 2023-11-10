@@ -49,4 +49,4 @@ def position_keyword_app(app_id: str, lang: str = "en", country: str = "us", key
         data.append({'Key': item[0], "Search position": item[2]})
     data = sorted(data, key=lambda k: k['Search position'])
 
-    return position_keywords
+    return data

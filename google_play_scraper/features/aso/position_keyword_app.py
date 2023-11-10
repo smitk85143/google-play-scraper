@@ -15,15 +15,15 @@ def position_validator(keywords, app_id, lang, country):
     relevant_keys = []
     for i, key in enumerate(keywords):
         search_result = [ x['appId'] for x in search(key[0], n_hits=50, lang=lang, country=country) ]
-        for search_app in search_result:
+        for j, search_app in enumerate(search_result):
             if search_app == app_id:
-                relevant_keys.append([key[0], key[1], i+1])
+                relevant_keys.append([key[0], key[1], j+1])
     return relevant_keys
 
 def position_keyword_app(app_id: str, lang: str = "en", country: str = "us", keywords: list = None) -> Dict[str, Any]:
     if keywords is None:
         data = app(app_id, lang, country)
-        full_content = [f"{data['title']} {data['summary']} {data['description']} {data['comments'][0]}{data['comments'][1]}{data['comments'][2]} {data['developer']}"]
+        full_content = [ f"{data['title']} {data['summary']} {data['description']} {data['comments'][0]}{data['comments'][1]}{data['comments'][2]} {data['developer']}" ]
 
         similar_apps = collection(data['similarAppsPage']['token'], lang, country)['apps']
 

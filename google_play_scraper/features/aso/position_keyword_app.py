@@ -1,7 +1,9 @@
 from typing import Any, Dict, List
 import yake
 
-from google_play_scraper import search, app, collection
+from google_play_scraper.features.app import app
+from google_play_scraper.features.collection import collection
+from google_play_scraper.features.search import search
 
 def conteins_keywords(keywords:List[tuple], key:str) -> bool:
     for k in keywords:
@@ -14,9 +16,8 @@ def position_validator(keywords, app_id, lang, country):
     for i, key in enumerate(keywords):
         search_result = [ x['appId'] for x in search(key[0], n_hits=50, lang=lang, country=country) ]
         for search_app in search_result:
-            position = i + 1
             if search_app == app_id:
-                relevant_keys.append([key[0], key[1], position])
+                relevant_keys.append([key[0], key[1], i+1])
     return relevant_keys
 
 def position_keyword_app(app_id: str, lang: str = "en", country: str = "us", keywords: list = None) -> Dict[str, Any]:

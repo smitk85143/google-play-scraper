@@ -27,15 +27,15 @@ def position_keyword_app(app_id: str, lang: str = "en", country: str = "us", key
 
         similar_apps = collection(data['similarAppsPage']['token'], lang, country)['apps']
 
-        for i, similar_app in enumerate(similar_apps):
-            if i < 3:
-                similar_data = app(similar_app, lang, country)
-                str_content = [f"{similar_data['title']} {similar_data['summary']} {similar_data['description']} {similar_data['developer']}"]
-                full_content.append(str_content)
+        # for i, similar_app in enumerate(similar_apps):
+        #     if i < 3:
+        #         similar_data = app(similar_app, lang, country)
+        #         str_content = [f"{similar_data['title']} {similar_data['summary']} {similar_data['description']} {similar_data['developer']}"]
+        #         full_content.append(str_content)
 
         keywords = []
         for txt in full_content:
-            extractor = yake.KeywordExtractor(lan=lang, n=3, dedupLim=0.9, features=None, top=100)
+            extractor = yake.KeywordExtractor(lan=lang, n=3, dedupLim=0.9, features=None, top=50)
             keys = extractor.extract_keywords(txt)
             for k in keys:
                 if not conteins_keywords(keywords, k[0]):

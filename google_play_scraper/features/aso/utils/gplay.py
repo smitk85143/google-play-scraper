@@ -11,10 +11,10 @@ MAX_SEARCH = 250
 MAX_LIST = 50
 
 def get_collection(app, lang, country):
-    return 'TOP_FREE' if app_info(app, lang=lang, country=country)['free'] else 'TOP_PAID'
+    return 'topselling_free' if app_info(app, lang=lang, country=country)['free'] else 'topselling_paid'
 
-def get_genre(app):
-    return app_info(app)['genreId']
+def get_genre(app, lang, country):
+    return app_info(app, lang=lang, country=country)['genreId']
 
 def build_store():
 
@@ -63,9 +63,9 @@ def build_store():
         'getSuggestScore': get_suggest_score,
         'getCollection': get_collection,
         'getGenre': get_genre,
-        'getCollectionQuery': lambda app: {
-            'collection': get_collection(app),
-            'category': get_genre(app),
+        'getCollectionQuery': lambda app, lang, country: {
+            'collection': get_collection(app, lang=lang, country=country),
+            'category': get_genre(app, lang, country),
             'num': store['MAX_LIST']
         }
     }

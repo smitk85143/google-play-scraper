@@ -26,14 +26,7 @@ def build(store):
             return index + 1 if index >= 0 else None
 
         queries = set((store["getCollection"](app, lang, country) for app in apps))
-        query_index = {tuple(q): [] for q in queries}
-        for q in queries:
-            if q == "TOP_FREE":
-                p = "topselling_free"
-            elif q == "TOP_PAID":
-                p = "topselling_paid"
-            query_index[tuple(q)] = store["list"](p)
-        
+        query_index = {tuple(q): store["list"](q, lang=lang, country=country) for q in queries}
         
         app_rank_lists = [query_index[tuple(store["getCollection"](app, lang, country))] for app in apps]
         ranks = [find_rank(app, app_rank_list) for app, app_rank_list in zip(apps, app_rank_lists) if find_rank(app, app_rank_list) is not None]

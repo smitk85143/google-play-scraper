@@ -17,14 +17,14 @@ def _get_apps(url):
          for el in hrefs if el.startswith('/store/apps/details')])
     return apps
 
-def leaderboard(identifier, start=0, num=24, hl="en", gl="us"):
+def leaderboard(identifier, start=0, num=24, lang="en", country="us"):
     """
     Returns a list of apps from the Google Play Leaderboard.
     :param identifier: The identifier of the leaderboard. Must be one of topselling_paid, topselling_free or topgrossing.
     :param start: The index of the first app to fetch.
     :param num: The number of apps to fetch.
-    :param hl: The language code (default: en).
-    :param gl: The country code (default: us).
+    :param lang: The language code (default: en).
+    :param country: The country code (default: us).
     
     :return: A list of app ids.
     """
@@ -33,5 +33,5 @@ def leaderboard(identifier, start=0, num=24, hl="en", gl="us"):
 
     url = 'https://play.google.com/store/apps'
 
-    url += "/collection/%s?start=%s&num=%s&hl=%s&gl=%s" % (identifier, start, num, hl, gl)
+    url += "/collection/%s?start=%s&num=%s&hl=%s&gl=%s" % (identifier, start, num, lang, country)
     return _get_apps(url)

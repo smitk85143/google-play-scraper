@@ -2,12 +2,17 @@ import json
 import requests
 from google_play_scraper.constants.request import PLAY_STORE_BASE_URL
 
-def suggest_keyword(keyword, **opts):
+def suggest_keyword(keyword, lang='en', country='us', **opts):
+    """
+    Get keyword suggestions for a given keyword.
+    :param keyword: keyword to get suggestions for
+    :param lang: language to get suggestions in
+    :param country: country to get suggestions in
+
+    :return: list of suggestions
+    """
     if not keyword:
         raise ValueError('term missing')
-
-    lang = opts.get('lang', 'en')
-    country = opts.get('country', 'us')
 
     url = f"{PLAY_STORE_BASE_URL}/_/PlayStoreUi/data/batchexecute?rpcids=IJ4APc&f.sid=-697906427155521722&bl=boq_playuiserver_20190903.08_p0&hl={lang}&gl={country}&authuser&soc-app=121&soc-platform=1&soc-device=1&_reqid=1065213"
 

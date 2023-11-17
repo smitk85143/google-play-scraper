@@ -14,3 +14,4 @@ from .features.suggest_keyword import suggest_keyword # noqa: F401
 from .features.aso.position_keyword_app import position_keyword_app # noqa: F401
 from .features.aso.scores.main import score # noqa: F401
 from .features.aso.trand_keywords import tread_keywords # noqa: F401
+from .features.aso.top_keywords import top_keywords # noqa: F401

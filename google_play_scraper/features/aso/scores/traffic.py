@@ -20,12 +20,12 @@ def build(store):
             "score": math.ceil(10 * length / MAX_KEYWORD_LENGTH)
         }
 
-    def get_ranked_apps(apps):
+    def get_ranked_apps(apps, lang, country):
         def find_rank(app, app_list):
             index = app_list.index(app) if app in app_list else -1
             return index + 1 if index >= 0 else None
 
-        queries = set((store["getCollection"](app) for app in apps))
+        queries = set((store["getCollection"](app, lang, country) for app in apps))
         query_index = {tuple(q): [] for q in queries}
         for q in queries:
             if q == "TOP_FREE":
@@ -35,7 +35,7 @@ def build(store):
             query_index[tuple(q)] = store["list"](p)
         
         
-        app_rank_lists = [query_index[tuple(store["getCollection"](app))] for app in apps]
+        app_rank_lists = [query_index[tuple(store["getCollection"](app, lang, country))] for app in apps]
         ranks = [find_rank(app, app_rank_list) for app, app_rank_list in zip(apps, app_rank_lists) if find_rank(app, app_rank_list) is not None]
         if not ranks:
             return {
@@ -59,19 +59,19 @@ def build(store):
         values = [stats["suggest"]["score"], stats["length"]["score"], stats["installs"]["score"], stats["ranked"]["score"]]
         return aggregate(weights, values)
 
-    def get_top_apps(apps):
+    def get_top_apps(apps, lang, country):
         top = apps[:10]
         if apps and "description" not in apps[0]:
-            return [store['app'](single_app)["appId"] for single_app in top]
+            return [store['app'](single_app, lang, country)["appId"] for single_app in top]
         else:
             return top
 
-    def get_stats(keyword, apps):
-        top_apps = get_top_apps(apps)
-        ranked = get_ranked_apps(top_apps)
-        suggest = store["getSuggestScore"](keyword)
+    def get_stats(keyword, apps, lang, country):
+        top_apps = get_top_apps(apps, lang, country)
+        ranked = get_ranked_apps(top_apps, lang, country)
+        suggest = store["getSuggestScore"](keyword, lang, country)
         length = get_keyword_length(keyword)
-        installs = store["getInstallsScore"](top_apps)
+        installs = store["getInstallsScore"](top_apps, lang, country)
         stats = {
             "suggest": suggest,
             "ranked": ranked,

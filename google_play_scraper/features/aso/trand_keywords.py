@@ -1,11 +1,20 @@
 from google_play_scraper.features.suggest_keyword import suggest_keyword
 
+from typing import Dict, Any
 
-def tread_keywords(keyword, hl, gl):
 
+def tread_keywords(keyword: str, lang: str = "en", country: str = "us") -> Dict[str, Any]:
+    """
+    Get the trend keywords of the keyword
+    :param keyword: the keyword
+    :param lang: the language of the keyword
+    :param country: the country of the keyword
+
+    :return: the trend keywords of the keyword
+    """
     try:
 
-        suggests = suggest_keyword(keyword, lang=hl, country=gl)
+        suggests = suggest_keyword(keyword, lang=lang, country=country)
         suggests.pop(0)
         list1 = []
         map = {}
@@ -27,7 +36,7 @@ def tread_keywords(keyword, hl, gl):
             for sug in lst:
         
                 if map.get(sug, False) == False:
-                    suggests = suggest_keyword(sug, lang=hl, country=gl)
+                    suggests = suggest_keyword(sug, lang=lang, country=country)
                     suggests.pop(0)
                     map[sug] = True
 

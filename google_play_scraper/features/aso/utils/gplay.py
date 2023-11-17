@@ -10,37 +10,37 @@ MAX_KEYWORD_LENGTH = 25
 MAX_SEARCH = 250
 MAX_LIST = 50
 
-def get_collection(app):
-    return 'TOP_FREE' if app_info(app)['free'] else 'TOP_PAID'
+def get_collection(app, lang, country):
+    return 'TOP_FREE' if app_info(app, lang=lang, country=country)['free'] else 'TOP_PAID'
 
 def get_genre(app):
     return app_info(app)['genreId']
 
 def build_store():
 
-    def get_suggest_length(keyword, length=None):
+    def get_suggest_length(keyword, lang, country, length=None):
         length = length or 1
         if length > min(len(keyword), MAX_KEYWORD_LENGTH):
             return {'length': None, 'index': None}
 
         prefix = keyword[:length]
-        suggestions = suggest_keyword(prefix)
+        suggestions = suggest_keyword(prefix, lang=lang, country=country)
         index = suggestions.index(keyword) if keyword in suggestions else -1
         
         if index == -1:
-            return get_suggest_length(keyword, length + 1)
+            return get_suggest_length(keyword, lang=lang, country=country, langth=length + 1)
 
         return {'length': length, 'index': index}
 
-    def get_installs_score(apps):
-        min_installs = [app_info(app)['minInstalls'] for app in apps]
+    def get_installs_score(apps, lang, country):
+        min_installs = [app_info(app, lang=lang, country=country)['minInstalls'] for app in apps]
         avg = sum(min_installs) / len(apps)
         max = 1000000
         score = z_score(max, avg)
         return {'avg': avg, 'score': score}
 
-    def get_suggest_score(keyword):
-        length_stats = get_suggest_length(keyword)
+    def get_suggest_score(keyword, lang, country):
+        length_stats = get_suggest_length(keyword, lang, country)
 
         if not length_stats['length']:
             score = 1

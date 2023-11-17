@@ -21,6 +21,15 @@ def position_validator(keywords, app_id, lang, country):
     return relevant_keys
 
 def position_keyword_app(app_id: str, lang: str = "en", country: str = "us", keywords: list = None) -> Dict[str, Any]:
+    """
+    Get the position of the keywords in the search of the app
+    :param app_id: the app id
+    :param lang: the language of the app
+    :param country: the country of the app
+    :kwarg keywords: the keywords to search
+
+    :return: the position of the keywords in the search of the app
+    """
     if keywords is None:
         data = app(app_id, lang, country)
         full_content = [ f"{data['title']} {data['summary']} {data['description']} {data['comments'][0]}{data['comments'][1]}{data['comments'][2]} {data['developer']}" ]

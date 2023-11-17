@@ -28,7 +28,7 @@ def build_store():
         index = suggestions.index(keyword) if keyword in suggestions else -1
         
         if index == -1:
-            return get_suggest_length(keyword, lang=lang, country=country, langth=length + 1)
+            return get_suggest_length(keyword, lang=lang, country=country, length=length + 1)
 
         return {'length': length, 'index': index}
 

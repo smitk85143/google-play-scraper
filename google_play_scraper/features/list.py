@@ -1,5 +1,3 @@
-## Not done yet
-
 import json
 from typing import List
 import requests

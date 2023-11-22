@@ -10,7 +10,7 @@ from google_play_scraper.utils.request import get
 
 
 def search(
-    query: str, n_hits: int = 30, lang: str = "en", country: str = "us"
+    query: str, n_hits: int = 50, lang: str = "en", country: str = "us"
 ) -> List[Dict[str, Any]]:
     query = quote(query)
     url = Formats.Searchresults.build(query=query, lang=lang, country=country)

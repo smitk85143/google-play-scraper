@@ -80,7 +80,7 @@ def parse_dom(dom: str, app_id: str, url: str) -> Dict[str, Any]:
                 "type": PageType.COLLECTION,
             }
 
-    result["appId"] = app_id
+    result["trackId"] = app_id
     result["url"] = url
 
     return result

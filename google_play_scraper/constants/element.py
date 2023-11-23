@@ -72,7 +72,7 @@ def get_categories(s):
 class ElementSpecs:
 
     Detail = {
-        "title": ElementSpec(5, [1, 2, 0, 0]),
+        "trackCensoredName": ElementSpec(5, [1, 2, 0, 0]),
         "description": ElementSpec(
             5,
             [1, 2],
@@ -89,7 +89,7 @@ class ElementSpecs:
         "installs": ElementSpec(5, [1, 2, 13, 0]),
         "minInstalls": ElementSpec(5, [1, 2, 13, 1]),
         "realInstalls": ElementSpec(5, [1, 2, 13, 2]),
-        "score": ElementSpec(5, [1, 2, 51, 0, 1]),
+        "averageUserRating": ElementSpec(5, [1, 2, 51, 0, 1]),
         "ratings": ElementSpec(5, [1, 2, 51, 2, 1]),
         "reviews": ElementSpec(5, [1, 2, 51, 3, 1]),
         "histogram": ElementSpec(
@@ -120,7 +120,7 @@ class ElementSpecs:
         # "size": ElementSpec(8, [0]),
         # "androidVersion": ElementSpec(5, [1, 2, 140, 1, 1, 0, 0, 1], lambda s: s.split()[0]),
         # "androidVersionText": ElementSpec(5, [1, 2, 140, 1, 1, 0, 0, 1]),
-        "developer": ElementSpec(5, [1, 2, 68, 0]),
+        "sellerName": ElementSpec(5, [1, 2, 68, 0]),
         "developerId": ElementSpec(5, [1, 2, 68, 1, 4, 2], lambda s: s.split("id=")[1]),
         "developerEmail": ElementSpec(5, [1, 2, 69, 1, 0]),
         "developerWebsite": ElementSpec(5, [1, 2, 69, 0, 5, 2]),

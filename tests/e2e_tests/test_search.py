@@ -13,19 +13,19 @@ class TestSearch(TestCase):
         self.assertGreater(len(results), 0)
 
         for result in results:
-            if result["appId"] == "com.nianticlabs.pokemongo":
+            if result["trackCensoredName"] == "com.nianticlabs.pokemongo":
                 break
 
         self.assertTrue("Pokémon GO" in result["title"])
-        self.assertEqual("com.nianticlabs.pokemongo", result["appId"])
+        self.assertEqual("com.nianticlabs.pokemongo", result["trackCensoredName"])
         self.assertTrue("Explore and discover Pokémon" in result["description"])
         self.assertTrue("<br>" in result["descriptionHTML"])
         self.assertTrue(result["installs"].endswith("000+"))
-        self.assertTrue(1.0 < result["score"] < 5.0)
+        self.assertTrue(1.0 < result["averageUserRating"] < 5.0)
         self.assertEqual(0, result["price"])
         self.assertTrue(result["free"])
         self.assertEqual("USD", result["currency"])
-        self.assertEqual("Niantic, Inc.", result["developer"])
+        self.assertEqual("Niantic, Inc.", result["sellerName"])
         self.assertEqual("Adventure", result["genre"])
         self.assertEqual(
             "https://play-lh.googleusercontent.com/wAWerkEu_g2_BMCl85WKqN2mxn0xW1O22nV6yJOayrMKu9pqtrLMn7S2Zd1xaykKm0g",

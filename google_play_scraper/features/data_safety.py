@@ -46,7 +46,7 @@ def data_safety(app_id: str, lang: str = "en", country: str = "us") -> Dict[str,
 
             result[k] = content
 
-    result["appId"] = app_id
+    result["trackCensoredName"] = app_id
     result["url"] = url
 
     return result

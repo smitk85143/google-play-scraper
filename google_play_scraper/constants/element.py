@@ -227,7 +227,7 @@ class ElementSpecs:
         "userName": ElementSpec(None, [1, 0]),
         "userImage": ElementSpec(None, [1, 1, 3, 2]),
         "content": ElementSpec(None, [4]),
-        "score": ElementSpec(None, [2]),
+        "averageUserRating": ElementSpec(None, [2]),
         "thumbsUpCount": ElementSpec(None, [6]),
         "reviewCreatedVersion": ElementSpec(None, [10]),
         "at": ElementSpec(None, [5, 0], lambda v: datetime.fromtimestamp(v)),
@@ -241,13 +241,13 @@ class ElementSpecs:
         None, [2], lambda container: sorted([item[1] for item in container])
     )
     Searchresult = {
-        "appId": ElementSpec(None, [0, 0, 0]),
+        "trackCensoredName": ElementSpec(None, [0, 0, 0]),
         "icon": ElementSpec(None, [0, 1, 3, 2]),
         "screenshots": ElementSpec(
             None, [0, 2], lambda container: [item[3][2] for item in container], []
         ),
         "title": ElementSpec(None, [0, 3]),
-        "score": ElementSpec(None, [0, 4, 1]),
+        "averageUserRating": ElementSpec(None, [0, 4, 1]),
         "genre": ElementSpec(None, [0, 5]),
         "price": ElementSpec(
             None, [0, 8, 1, 0, 0], lambda price: (price / 1000000) or 0
@@ -258,7 +258,7 @@ class ElementSpecs:
         "videoImage": ElementSpec(None, [0, 12, 0, 3, 3, 2]),
         "description": ElementSpec(None, [0, 13, 1], unescape_text),
         "descriptionHTML": ElementSpec(None, [0, 13, 1]),
-        "developer": ElementSpec(None, [0, 14]),
+        "sellerName": ElementSpec(None, [0, 14]),
         "installs": ElementSpec(None, [0, 15]),
     }
     DataSafety = {

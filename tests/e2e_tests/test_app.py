@@ -8,7 +8,7 @@ class TestApp(TestCase):
         result = app("air.com.Tatsuki.CookieBreaker")
 
         self.assertEqual("Cookie Breaker!!!", result["title"])
-        self.assertEqual("air.com.Tatsuki.CookieBreaker", result["appId"])
+        self.assertEqual("air.com.Tatsuki.CookieBreaker", result["trackCensoredName"])
         self.assertEqual(
             "https://play.google.com/store/apps/details?id=air.com.Tatsuki.CookieBreaker&hl=en&gl=us",
             result["url"],
@@ -29,7 +29,7 @@ class TestApp(TestCase):
         )
         self.assertEqual("100,000+", result["installs"])
         self.assertEqual(100000, result["minInstalls"])
-        self.assertTrue(3.7 < result["score"] < 4.0)
+        self.assertTrue(3.7 < result["averageUserRating"] < 4.0)
         self.assertTrue(9500 <= result["ratings"])
         self.assertTrue(200 <= result["reviews"])
         self.assertTrue(result["reviews"] < result["ratings"])
@@ -46,7 +46,7 @@ class TestApp(TestCase):
         self.assertEqual("$0.99 - $2.99 per item", result["inAppProductPrice"])
         # self.assertEqual("Varies", result["androidVersion"])
         # self.assertEqual("Varies with device", result["androidVersionText"])
-        self.assertEqual("Tatsuki", result["developer"])
+        self.assertEqual("Tatsuki", result["sellerName"])
         self.assertEqual("Tatsuki", result["developerId"])
         self.assertEqual("sskttk.android@gmail.com", result["developerEmail"])
         self.assertEqual("https://sskttk-app.com/", result["developerWebsite"])

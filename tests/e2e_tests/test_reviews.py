@@ -33,7 +33,7 @@ class TestReviews(TestCase):
             self.assertTrue(r["userName"])
             self.assertTrue(r["userImage"])
             self.assertTrue(r["content"])
-            self.assertTrue(r["score"] >= 1)
+            self.assertTrue(r["averageUserRating"] >= 1)
             self.assertTrue(r["thumbsUpCount"] >= 0)
             self.assertTrue(r["appVersion"])
 
@@ -81,7 +81,7 @@ class TestReviews(TestCase):
                 filter_score_with=score,
             )
 
-            self.assertEqual(score * 300, sum([r["score"] for r in result]))
+            self.assertEqual(score * 300, sum([r["averageUserRating"] for r in result]))
 
     def test_reply_data(self):
         """

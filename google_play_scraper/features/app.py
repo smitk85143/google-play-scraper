@@ -53,7 +53,7 @@ def parse_dom(dom: str, app_id: str, url: str) -> Dict[str, Any]:
     for collection in ElementSpecs.DetailHelper["appCollections"].extract_content(
         dataset
     ):
-        if result["developer"] in collection["title"]:
+        if result["sellerName"] in collection["title"]:
             result["moreByDeveloper"] = collection["appIds"]
         else:
             result["similarApps"] = collection["appIds"]
@@ -61,7 +61,7 @@ def parse_dom(dom: str, app_id: str, url: str) -> Dict[str, Any]:
     for page in ElementSpecs.DetailHelper["appCollectionPages"].extract_content(
         dataset
     ):
-        if result["developer"] in page["title"]:
+        if result["sellerName"] in page["title"]:
             result["moreByDeveloperPage"] = {
                 "token": page["url"][35:]
                 if page["url"].startswith("/store/apps/collection/cluster")

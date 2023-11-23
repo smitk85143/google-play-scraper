@@ -44,7 +44,7 @@ Result of `print(result)`:
     "installs": "100,000,000+",
     "minInstalls": 100000000,
     "realInstalls": 449897250,
-    "score": 4.28594,
+    "averageUserRating": 4.28594,
     "ratings": 15214804,
     "reviews": 970851,
     "histogram": [1455041, 416355, 885302, 2024405, 10433680],
@@ -57,7 +57,7 @@ Result of `print(result)`:
     "saleText": None,
     "offersIAP": True,
     "inAppProductPrice": "$0.99 - $99.99 per item",
-    "developer": "Niantic, Inc.",
+    "sellerName": "Niantic, Inc.",
     "developerId": "Niantic,+Inc.",
     "developerEmail": "pokemon-go-support@nianticlabs.com",
     "developerWebsite": "https://niantic.helpshift.com/a/pokemon-go/?p=web",
@@ -135,7 +135,7 @@ Result of `print(result)`:
         "Overall experience with the game personally has been much better recently compared to a few years ago. Definitely noticing more crashes with this update though. One crash cost me a raid and remote raid pass that I paid for. Obviously it's not the biggest issue, but if I'm willing to put money into a mobile game and I lose what I paid for in-game because of YOUR update, then I feel like the game should be able to replace what's lost during the crash. Just something to consider for your customers.",
         "Why half the interaction distance with health concerns still high? Doubling the distance was a great idea. It helped with several misplaced pokestops in my area that are an accessible due to misplacement or closed access. People do silly things sometimes to get to some of these stops. I did not see that happening in the last year. This decision should be reversed with a rise in the d variant. The interactive distance is too small.",
     ],
-    "appId": "com.nianticlabs.pokemongo",
+    "trackCensoredName": "com.nianticlabs.pokemongo",
     "url": "https://play.google.com/store/apps/details?id=com.nianticlabs.pokemongo&hl=en&gl=us",
 }
 ```

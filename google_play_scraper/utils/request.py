@@ -8,10 +8,9 @@ from google_play_scraper.exceptions import (
     TooManyRequestsError,
 )
 
-
-def _urlopen(obj):
+def _urlopen(obj, timeout):
     try:
-        resp = urlopen(obj)
+        resp = urlopen(obj, timeout=timeout)
     except HTTPError as e:
         if e.code == 404:
             raise NotFoundError("Page not found(404).")
@@ -29,5 +28,7 @@ def post(url: str, data: Union[str, bytes], headers: dict) -> str:
     return _urlopen(Request(url, data=data, headers=headers))
 
 
-def get(url: str) -> str:
-    return _urlopen(url)
+def get(url: str, herder: str = None, timeout: int = 2) -> str:
+    if herder != None:
+        return _urlopen(Request(url, herder=herder), timeout=timeout)
+    return _urlopen(url, timeout=timeout)

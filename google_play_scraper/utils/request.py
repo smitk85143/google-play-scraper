@@ -28,7 +28,7 @@ def post(url: str, data: Union[str, bytes], headers: dict) -> str:
     return _urlopen(Request(url, data=data, headers=headers))
 
 
-def get(url: str, herder: dict = None, timeout: int = 2) -> str:
-    if herder == None:
+def get(url: str, headers: dict = None, timeout: int = 2) -> str:
+    if headers == None:
         return _urlopen(Request(url), timeout=timeout)
-    return _urlopen(Request(url, headers=herder), timeout=timeout)
+    return _urlopen(Request(url, headers=headers), timeout=timeout)

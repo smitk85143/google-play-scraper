@@ -11,12 +11,14 @@ from google_play_scraper.utils.request import get
 
 def app(app_id: str, lang: str = "en", country: str = "us") -> Dict[str, Any]:
     url = Formats.Detail.build(app_id=app_id, lang=lang, country=country)
-
+    header = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+    }
     try:
-        dom = get(url)
+        dom = get(url, headers=header)
     except NotFoundError:
         url = Formats.Detail.fallback_build(app_id=app_id, lang=lang)
-        dom = get(url)
+        dom = get(url, headers=header)
     return parse_dom(dom=dom, app_id=app_id, url=url)
 
 

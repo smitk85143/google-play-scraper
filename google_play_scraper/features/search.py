@@ -12,15 +12,15 @@ from google_play_scraper.features.app import app as app_data
 
 
 def search(
-    query: str, n_hits: int = 50, lang: str = "en", country: str = "us", herder: dict = None, timeout: int = 2
+    query: str, n_hits: int = 50, lang: str = "en", country: str = "us", headers: dict = None, timeout: int = 2
 ) -> List[Dict[str, Any]]:
     query = quote(query)
     url = Formats.Searchresults.build(query=query, lang=lang, country=country)
     try:
-        dom = get(url, herder, timeout)
+        dom = get(url, headers, timeout)
     except NotFoundError:
         url = Formats.Searchresults.fallback_build(query=query, lang=lang)
-        dom = get(url, herder, timeout)
+        dom = get(url, headers, timeout)
     matches = Regex.SCRIPT.findall(dom)
 
     dataset = {}

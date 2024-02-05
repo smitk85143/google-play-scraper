@@ -165,6 +165,7 @@ class ElementSpecs:
                 for i in range(0, len(container))
             ],
         ),
+        "whats_new": ElementSpec(5, [1, 2, 144, 1, 1], unescape_text),
         "otherLanguages": ElementSpec(
             3,
             [0, 3],

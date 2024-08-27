@@ -3,7 +3,6 @@ from typing import Any, Dict
 
 from google_play_scraper.constants.element import ElementSpecs
 from google_play_scraper.constants.regex import Regex
-from google_play_scraper.constants.google_play import PageType
 from google_play_scraper.constants.request import Formats
 from google_play_scraper.exceptions import NotFoundError
 from google_play_scraper.utils.request import get
@@ -40,47 +39,11 @@ def parse_dom(dom: str, app_id: str, url: str) -> Dict[str, Any]:
     result = {}
 
     for k, spec in ElementSpecs.Detail.items():
-        if isinstance(spec, list):
-            for sub_spec in spec:
-                content = sub_spec.extract_content(dataset)
-
-                if content is not None:
-                    result[k] = content
-                    break
+        content = spec.extract_content(dataset)
+        if content is None:
+            result[k] = spec.fallback_value
         else:
-            content = spec.extract_content(dataset)
-
             result[k] = content
-
-    for collection in ElementSpecs.DetailHelper["appCollections"].extract_content(
-        dataset
-    ):
-        if result["sellerName"] in collection["title"]:
-            result["moreByDeveloper"] = collection["appIds"]
-        else:
-            result["similarApps"] = collection["appIds"]
-
-    for page in ElementSpecs.DetailHelper["appCollectionPages"].extract_content(
-        dataset
-    ):
-        if result["sellerName"] in page["title"]:
-            result["moreByDeveloperPage"] = {
-                "token": page["url"][35:]
-                if page["url"].startswith("/store/apps/collection/cluster")
-                else page["url"][19:]
-                if page["url"].startswith("/store/apps/dev")
-                else page["url"],
-                "type": PageType.COLLECTION
-                if page["url"].startswith("/store/apps/collection/cluster")
-                else PageType.DEVELOPER
-                if page["url"].startswith("/store/apps/dev")
-                else None,
-            }
-        else:
-            result["similarAppsPage"] = {
-                "token": page["url"][35:],
-                "type": PageType.COLLECTION,
-            }
 
     result["trackId"] = app_id
     result["url"] = url

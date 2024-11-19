@@ -241,7 +241,33 @@ class ElementSpecs:
     Permission_List = ElementSpec(
         None, [2], lambda container: sorted([item[1] for item in container])
     )
-    Searchresult = {
+
+    SearchResultOnTop = {
+        "trackCensoredName": ElementSpec(None, [11, 0, 0]),
+        "icon": ElementSpec(None, [2, 95, 0, 3, 2]),
+        "screenshots": ElementSpec(
+            None,
+            [2, 78, 0],
+            lambda container: [item[3][2] for item in container],
+            [],
+        ),
+        "title": ElementSpec(None, [2, 0, 0]),
+        "averageUserRating": ElementSpec(None, [2, 51, 0, 1]),
+        "genre": ElementSpec(None, [2, 79, 0, 0, 0]),
+        "price": ElementSpec(
+            None, [2, 57, 0, 0, 0, 0, 1, 0, 0], lambda price: (price / 1000000) or 0
+        ),
+        "free": ElementSpec(None, [2, 57, 0, 0, 0, 0, 1, 0, 0], lambda s: s == 0),
+        "currency": ElementSpec(None, [2, 57, 0, 0, 0, 0, 1, 0, 1]),
+        "video": ElementSpec(None, [2, 100, 0, 0, 3, 2]),
+        "videoImage": ElementSpec(None, [2, 100, 1, 0, 3, 2]),
+        "description": ElementSpec(None, [2, 72, 0, 1], unescape_text),
+        "descriptionHTML": ElementSpec(None, [2, 72, 0, 1]),
+        "sellerName": ElementSpec(None, [2, 68, 0]),
+        "installs": ElementSpec(None, [2, 13, 0]),
+    }
+
+    SearchResult = {
         "trackCensoredName": ElementSpec(None, [0, 0, 0]),
         "icon": ElementSpec(None, [0, 1, 3, 2]),
         "screenshots": ElementSpec(

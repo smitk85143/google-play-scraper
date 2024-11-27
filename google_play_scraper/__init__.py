@@ -7,6 +7,6 @@ from .features.search_ids import search_ids  # noqa: F401
 from .features.data_safety import data_safety  # noqa: F401
 from .features.collection import collection # noqa: F401
 from .features.developer import developer # noqa: F401
-from .features.leaderboard import leaderboard # noqa: F401
+# from .features.leaderboard import leaderboard # noqa: F401
 from .features.list import list # noqa: F401
 from .features.suggest_keyword import suggest_keyword # noqa: F401
